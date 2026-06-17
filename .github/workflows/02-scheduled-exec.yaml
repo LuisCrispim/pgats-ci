@@ -1,13 +1,16 @@
-# CI de anível 01 - Disparo manual através de clique
+# CI de nível 02 - Execução Agendada
 
 # nome da pipeline
-name: 'Execução Manual'
+name: 'Execução Agendada'
 
 # gatilhos / triggers - regras de disparo
 # gatilho manual = workflow dispatch
 
 on: 
-    workflow_dispatch:
+    schedule:
+      # cronograma de execução
+      # 1 - minuto, 2 - hora, 3 - dia do mês, 4 - mês, 5 - dia da semana
+      - cron: '35 14 * * 3'
 
 # tarefas dentro da pipeline = jobs
 
