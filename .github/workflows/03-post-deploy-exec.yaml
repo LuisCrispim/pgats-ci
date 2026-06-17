@@ -22,6 +22,9 @@ jobs:
         # maquina onde o job vai rodar
         runs-on: ubuntu-latest
 
+        # só irá rodar o segundo pipe, caso o primeiro dê certo
+        if: ${{ github.event.workflow_run.conclusion == 'sucess' }}
+
         # passos do job
         steps: 
               # clone do projeto
