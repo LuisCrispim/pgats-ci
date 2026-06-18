@@ -23,7 +23,7 @@ jobs:
         runs-on: ubuntu-latest
 
         # só irá rodar o segundo pipe, caso o primeiro dê certo
-        if: ${{ github.event.workflow_run.conclusion == 'sucess' }}
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
         # passos do job
         steps: 
