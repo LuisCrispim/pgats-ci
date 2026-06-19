@@ -11,6 +11,12 @@ name: 'Execução Integrada'
 on:
   workflow_dispatch:
 
+  # irá rodar sempre que subir branch para master
+  push: 
+    branches: 
+      - master
+
+
 jobs:
   #nome do job
   inspecao:
@@ -80,6 +86,14 @@ jobs:
 
       - name: Executando testes E2E
         run: yarn run e2e
+
+      - name: Salvando relatórios de testes e2e
+        run: actions/upload-artifact@v4
+        if: ${{ always() }} # comando para sempre salvar o relatório
+        with: 
+          path: ./playwright-report # caminho que irá guardar os relatórios
+          name: Relatório de testes e2e
+
 
   deploy:
     runs-on: ubuntu-latest
