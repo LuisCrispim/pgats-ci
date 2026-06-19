@@ -6,26 +6,25 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-- job: e2e_tests
-  displayName: 'E2E Tests'
+  - job: e2e_tests
+    displayName: 'E2E Tests'
 
-  steps:
+    steps:
+      - checkout: self
 
-  - checkout: self
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '24.x'
+        displayName: 'Instalando Node'
 
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '24.x'
-    displayName: 'Instalando Node'
+      - script: npm install -g yarn
+        displayName: 'Instalando yarn'
 
-  - script: npm install -g yarn
-    displayName: 'Instalando yarn'
+      - script: yarn
+        displayName: 'Instalando dependências'
 
-  - script: yarn
-    displayName: 'Instalando dependências'
+      - script: yarn playwright install
+        displayName: 'Instalando Browsers do Playwright'
 
-  - script: yarn playwright install
-    displayName: 'Instalando Browsers do Playwright'
-
-  - script: yarn run e2e
-    displayName: 'Executando os testes e2e'
+      - script: yarn run e2e
+        displayName: 'Executando os testes e2e'

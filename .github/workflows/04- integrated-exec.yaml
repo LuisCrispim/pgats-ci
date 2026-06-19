@@ -11,7 +11,6 @@ name: 'Execução Integrada'
 on:
   workflow_dispatch:
 
-
 jobs:
   #nome do job
   inspecao:
@@ -81,7 +80,6 @@ jobs:
 
       - name: Executando testes E2E
         run: yarn run e2e
-
 
   deploy:
     runs-on: ubuntu-latest
